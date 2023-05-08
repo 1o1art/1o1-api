@@ -1,0 +1,462 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IDiamondContractLauncher",
+  "sourceName": "contracts/interfaces/IDiamondContractLauncher.sol",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "Launch",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "addr",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "LaunchRegistry",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getClaimsBps",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "offset",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "asc",
+          "type": "bool"
+        }
+      ],
+      "name": "getContracts",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "offset",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "asc",
+          "type": "bool"
+        }
+      ],
+      "name": "getContractsByOwner",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getLauncherGlobalDiamondProxy",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "namespace",
+              "type": "bool"
+            },
+            {
+              "internalType": "address",
+              "name": "diamondAddress",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct LibDiamond.GlobalDiamondProxy[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "offset",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "limit",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "asc",
+          "type": "bool"
+        }
+      ],
+      "name": "getRegistriesByOwner",
+      "outputs": [
+        {
+          "internalType": "address[]",
+          "name": "",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes20[]",
+          "name": "facetIds",
+          "type": "bytes20[]"
+        },
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "facetAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "enum IDiamondCut.FacetCutAction",
+              "name": "action",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes4[]",
+              "name": "functionSelectors",
+              "type": "bytes4[]"
+            }
+          ],
+          "internalType": "struct IDiamondCut.FacetCut[]",
+          "name": "facets",
+          "type": "tuple[]"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "namespace",
+              "type": "bool"
+            },
+            {
+              "internalType": "address",
+              "name": "diamondAddress",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct LibDiamond.GlobalDiamondProxy[]",
+          "name": "proxies",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "callData",
+          "type": "bytes"
+        }
+      ],
+      "name": "launch",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes20[]",
+          "name": "facetIds",
+          "type": "bytes20[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "callData",
+          "type": "bytes"
+        }
+      ],
+      "name": "launch",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes20[]",
+          "name": "facetIds",
+          "type": "bytes20[]"
+        }
+      ],
+      "name": "launchRegistry",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint16",
+          "name": "_claimsBps",
+          "type": "uint16"
+        }
+      ],
+      "name": "setClaimsBps",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "diamondCutAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "registerDiamondCutAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "diamondLoupe",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "diamondInit",
+          "type": "address"
+        }
+      ],
+      "name": "setDiamondAddresses",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "facetAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "enum IDiamondCut.FacetCutAction",
+              "name": "action",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bytes4[]",
+              "name": "functionSelectors",
+              "type": "bytes4[]"
+            }
+          ],
+          "internalType": "struct IDiamondCut.FacetCut[]",
+          "name": "_diamondCut",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "setFacetCuts",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_minFee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_maxfee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "multiplier",
+          "type": "uint256"
+        }
+      ],
+      "name": "setFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "namespace",
+              "type": "bool"
+            },
+            {
+              "internalType": "address",
+              "name": "diamondAddress",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct LibDiamond.GlobalDiamondProxy[]",
+          "name": "_globalDiamondProxy",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "setLauncherGlobalDiamondProxy",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

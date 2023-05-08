@@ -1,0 +1,599 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "EIP712Decoder",
+  "sourceName": "delegatable-sol/contracts/TypesAndDecoders.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "enforcer",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "terms",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct Caveat[]",
+          "name": "_input",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "GET_CAVEAT_ARRAY_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "enforcer",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "terms",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct Caveat",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_CAVEAT_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "delegate",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "authority",
+              "type": "bytes32"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "enforcer",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "terms",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct Caveat[]",
+              "name": "caveats",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Delegation",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_DELEGATION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "gasLimit",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Transaction",
+                  "name": "transaction",
+                  "type": "tuple"
+                },
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "delegate",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes32",
+                          "name": "authority",
+                          "type": "bytes32"
+                        },
+                        {
+                          "components": [
+                            {
+                              "internalType": "address",
+                              "name": "enforcer",
+                              "type": "address"
+                            },
+                            {
+                              "internalType": "bytes",
+                              "name": "terms",
+                              "type": "bytes"
+                            }
+                          ],
+                          "internalType": "struct Caveat[]",
+                          "name": "caveats",
+                          "type": "tuple[]"
+                        }
+                      ],
+                      "internalType": "struct Delegation",
+                      "name": "delegation",
+                      "type": "tuple"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "signature",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct SignedDelegation[]",
+                  "name": "authority",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Invocation[]",
+              "name": "batch",
+              "type": "tuple[]"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "queue",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct ReplayProtection",
+              "name": "replayProtection",
+              "type": "tuple"
+            }
+          ],
+          "internalType": "struct Invocations",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_INVOCATIONS_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasLimit",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct Transaction",
+              "name": "transaction",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "delegate",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "authority",
+                      "type": "bytes32"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "enforcer",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "terms",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct Caveat[]",
+                      "name": "caveats",
+                      "type": "tuple[]"
+                    }
+                  ],
+                  "internalType": "struct Delegation",
+                  "name": "delegation",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "signature",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct SignedDelegation[]",
+              "name": "authority",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Invocation[]",
+          "name": "_input",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "GET_INVOCATION_ARRAY_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "to",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "gasLimit",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "data",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct Transaction",
+              "name": "transaction",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "delegate",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes32",
+                      "name": "authority",
+                      "type": "bytes32"
+                    },
+                    {
+                      "components": [
+                        {
+                          "internalType": "address",
+                          "name": "enforcer",
+                          "type": "address"
+                        },
+                        {
+                          "internalType": "bytes",
+                          "name": "terms",
+                          "type": "bytes"
+                        }
+                      ],
+                      "internalType": "struct Caveat[]",
+                      "name": "caveats",
+                      "type": "tuple[]"
+                    }
+                  ],
+                  "internalType": "struct Delegation",
+                  "name": "delegation",
+                  "type": "tuple"
+                },
+                {
+                  "internalType": "bytes",
+                  "name": "signature",
+                  "type": "bytes"
+                }
+              ],
+              "internalType": "struct SignedDelegation[]",
+              "name": "authority",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct Invocation",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_INVOCATION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "nonce",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "queue",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ReplayProtection",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_REPLAYPROTECTION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "delegate",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "authority",
+                  "type": "bytes32"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "enforcer",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "terms",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Caveat[]",
+                  "name": "caveats",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Delegation",
+              "name": "delegation",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes",
+              "name": "signature",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct SignedDelegation[]",
+          "name": "_input",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "GET_SIGNEDDELEGATION_ARRAY_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "delegate",
+                  "type": "address"
+                },
+                {
+                  "internalType": "bytes32",
+                  "name": "authority",
+                  "type": "bytes32"
+                },
+                {
+                  "components": [
+                    {
+                      "internalType": "address",
+                      "name": "enforcer",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "terms",
+                      "type": "bytes"
+                    }
+                  ],
+                  "internalType": "struct Caveat[]",
+                  "name": "caveats",
+                  "type": "tuple[]"
+                }
+              ],
+              "internalType": "struct Delegation",
+              "name": "delegation",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes",
+              "name": "signature",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct SignedDelegation",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_SIGNEDDELEGATION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "gasLimit",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct Transaction",
+          "name": "_input",
+          "type": "tuple"
+        }
+      ],
+      "name": "GET_TRANSACTION_PACKETHASH",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b50610d90806100206000396000f3fe608060405234801561001057600080fd5b50600436106100be5760003560e01c80636f96580311610076578063736f7ce71161005b578063736f7ce71461015a5780637b577b581461016d578063a2e01f751461018057600080fd5b80636f965803146101345780637234eefe1461014757600080fd5b80633a481821116100a75780633a481821146100fb5780635cf1b24a1461010e5780636c2b12531461012157600080fd5b806308aaf6b0146100c35780632f52a2fd146100e8575b600080fd5b6100d66100d1366004610726565b610193565b60405190815260200160405180910390f35b6100d66100f636600461087a565b610220565b6100d6610109366004610acc565b610298565b6100d661011c366004610b01565b61030f565b6100d661012f366004610b36565b61036c565b6100d6610142366004610b9b565b6103c9565b6100d6610155366004610bbe565b61041a565b6100d6610168366004610c3d565b610458565b6100d661017b366004610c72565b6104c0565b6100d661018e366004610ca7565b610528565b6000807f80ad7e1b04ee6d994a125f4714ca0720908bd80ed16063ec8aee4b88e9253e2d83600001518460200151805190602001206040516020016102019392919092835273ffffffffffffffffffffffffffffffffffffffff919091166020830152604082015260600190565b60408051601f1981840301815291905280516020909101209392505050565b6000807f409f5114779a253e700d775d7845e6efc1e83685ac59868d2df3d4de51c7d6218360000151846020015161025b86604001516104c0565b60408051602081019590955273ffffffffffffffffffffffffffffffffffffffff909316928401929092526060830152608082015260a001610201565b6000606060005b835181101561030057816102cb8583815181106102be576102be610cdc565b602002602001015161030f565b6040516020016102dc929190610cf2565b604051602081830303815290604052915080806102f890610d33565b91505061029f565b50805160209091012092915050565b6000807fd97dd99b404d177890f06a8f0fc8e5ed0333fb2ebb6684360709066e8984f5946103408460000151610528565b61034d8560200151610458565b6040805160208101949094528301919091526060820152608001610201565b6000807f3c36a06e1d288b0f94f565588317a46ad11bc3c96992109f9a2365a2737259a761039d8460000151610220565b602080860151805190820120604051610201949392019283526020830191909152604082015260600190565b6000807fe8d3d963b33868fb116316bc3fd55e8f49123f30e4418f71e140d54b7cd3b2b983600001518460200151604051602001610201939291909283526020830191909152604082015260600190565b6000807f08c69a206c06f5334b35ceb1186181a713b21aff02cf66285f375084fbef2eb861044b8460000151610298565b61034d85602001516103c9565b6000606060005b8351811015610300578161048b85838151811061047e5761047e610cdc565b602002602001015161036c565b60405160200161049c929190610cf2565b604051602081830303815290604052915080806104b890610d33565b91505061045f565b6000606060005b835181101561030057816104f38583815181106104e6576104e6610cdc565b6020026020010151610193565b604051602001610504929190610cf2565b6040516020818303038152906040529150808061052090610d33565b9150506104c7565b6000807fb16dfdb3b8fa033fe30ac976cd4a50ad256b6811c80d90fcd0b323eec190047d83600001518460200151856040015180519060200120604051602001610201949392919093845273ffffffffffffffffffffffffffffffffffffffff9290921660208401526040830152606082015260800190565b634e487b7160e01b600052604160045260246000fd5b6040805190810167ffffffffffffffff811182821017156105da576105da6105a1565b60405290565b6040516060810167ffffffffffffffff811182821017156105da576105da6105a1565b604051601f8201601f1916810167ffffffffffffffff8111828210171561062c5761062c6105a1565b604052919050565b803573ffffffffffffffffffffffffffffffffffffffff8116811461065857600080fd5b919050565b600082601f83011261066e57600080fd5b813567ffffffffffffffff811115610688576106886105a1565b61069b601f8201601f1916602001610603565b8181528460208386010111156106b057600080fd5b816020850160208301376000918101602001919091529392505050565b6000604082840312156106df57600080fd5b6106e76105b7565b90506106f282610634565b8152602082013567ffffffffffffffff81111561070e57600080fd5b61071a8482850161065d565b60208301525092915050565b60006020828403121561073857600080fd5b813567ffffffffffffffff81111561074f57600080fd5b61075b848285016106cd565b949350505050565b600067ffffffffffffffff82111561077d5761077d6105a1565b5060051b60200190565b600082601f83011261079857600080fd5b813560206107ad6107a883610763565b610603565b82815260059290921b840181019181810190868411156107cc57600080fd5b8286015b8481101561080c57803567ffffffffffffffff8111156107f05760008081fd5b6107fe8986838b01016106cd565b8452509183019183016107d0565b509695505050505050565b60006060828403121561082957600080fd5b6108316105e0565b905061083c82610634565b815260208201356020820152604082013567ffffffffffffffff81111561086257600080fd5b61086e84828501610787565b60408301525092915050565b60006020828403121561088c57600080fd5b813567ffffffffffffffff8111156108a357600080fd5b61075b84828501610817565b6000606082840312156108c157600080fd5b6108c96105e0565b90506108d482610634565b815260208201356020820152604082013567ffffffffffffffff8111156108fa57600080fd5b61086e8482850161065d565b60006040828403121561091857600080fd5b6109206105b7565b9050813567ffffffffffffffff8082111561093a57600080fd5b61094685838601610817565b8352602084013591508082111561095c57600080fd5b5061071a8482850161065d565b600082601f83011261097a57600080fd5b8135602061098a6107a883610763565b82815260059290921b840181019181810190868411156109a957600080fd5b8286015b8481101561080c57803567ffffffffffffffff8111156109cd5760008081fd5b6109db8986838b0101610906565b8452509183019183016109ad565b6000604082840312156109fb57600080fd5b610a036105b7565b9050813567ffffffffffffffff80821115610a1d57600080fd5b610a29858386016108af565b83526020840135915080821115610a3f57600080fd5b5061071a84828501610969565b600082601f830112610a5d57600080fd5b81356020610a6d6107a883610763565b82815260059290921b84018101918181019086841115610a8c57600080fd5b8286015b8481101561080c57803567ffffffffffffffff811115610ab05760008081fd5b610abe8986838b01016109e9565b845250918301918301610a90565b600060208284031215610ade57600080fd5b813567ffffffffffffffff811115610af557600080fd5b61075b84828501610a4c565b600060208284031215610b1357600080fd5b813567ffffffffffffffff811115610b2a57600080fd5b61075b848285016109e9565b600060208284031215610b4857600080fd5b813567ffffffffffffffff811115610b5f57600080fd5b61075b84828501610906565b600060408284031215610b7d57600080fd5b610b856105b7565b9050813581526020820135602082015292915050565b600060408284031215610bad57600080fd5b610bb78383610b6b565b9392505050565b600060208284031215610bd057600080fd5b813567ffffffffffffffff80821115610be857600080fd5b9083019060608286031215610bfc57600080fd5b610c046105b7565b823582811115610c1357600080fd5b610c1f87828601610a4c565b825250610c2f8660208501610b6b565b602082015295945050505050565b600060208284031215610c4f57600080fd5b813567ffffffffffffffff811115610c6657600080fd5b61075b84828501610969565b600060208284031215610c8457600080fd5b813567ffffffffffffffff811115610c9b57600080fd5b61075b84828501610787565b600060208284031215610cb957600080fd5b813567ffffffffffffffff811115610cd057600080fd5b61075b848285016108af565b634e487b7160e01b600052603260045260246000fd5b6000835160005b81811015610d135760208187018101518583015201610cf9565b81811115610d22576000828501525b509190910191825250602001919050565b600060018201610d5357634e487b7160e01b600052601160045260246000fd5b506001019056fea2646970667358221220870ba7267d246dfcd8cef843cdf5f0f16bc52db147aacd73a1f5902bc7c3373964736f6c634300080f0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100be5760003560e01c80636f96580311610076578063736f7ce71161005b578063736f7ce71461015a5780637b577b581461016d578063a2e01f751461018057600080fd5b80636f965803146101345780637234eefe1461014757600080fd5b80633a481821116100a75780633a481821146100fb5780635cf1b24a1461010e5780636c2b12531461012157600080fd5b806308aaf6b0146100c35780632f52a2fd146100e8575b600080fd5b6100d66100d1366004610726565b610193565b60405190815260200160405180910390f35b6100d66100f636600461087a565b610220565b6100d6610109366004610acc565b610298565b6100d661011c366004610b01565b61030f565b6100d661012f366004610b36565b61036c565b6100d6610142366004610b9b565b6103c9565b6100d6610155366004610bbe565b61041a565b6100d6610168366004610c3d565b610458565b6100d661017b366004610c72565b6104c0565b6100d661018e366004610ca7565b610528565b6000807f80ad7e1b04ee6d994a125f4714ca0720908bd80ed16063ec8aee4b88e9253e2d83600001518460200151805190602001206040516020016102019392919092835273ffffffffffffffffffffffffffffffffffffffff919091166020830152604082015260600190565b60408051601f1981840301815291905280516020909101209392505050565b6000807f409f5114779a253e700d775d7845e6efc1e83685ac59868d2df3d4de51c7d6218360000151846020015161025b86604001516104c0565b60408051602081019590955273ffffffffffffffffffffffffffffffffffffffff909316928401929092526060830152608082015260a001610201565b6000606060005b835181101561030057816102cb8583815181106102be576102be610cdc565b602002602001015161030f565b6040516020016102dc929190610cf2565b604051602081830303815290604052915080806102f890610d33565b91505061029f565b50805160209091012092915050565b6000807fd97dd99b404d177890f06a8f0fc8e5ed0333fb2ebb6684360709066e8984f5946103408460000151610528565b61034d8560200151610458565b6040805160208101949094528301919091526060820152608001610201565b6000807f3c36a06e1d288b0f94f565588317a46ad11bc3c96992109f9a2365a2737259a761039d8460000151610220565b602080860151805190820120604051610201949392019283526020830191909152604082015260600190565b6000807fe8d3d963b33868fb116316bc3fd55e8f49123f30e4418f71e140d54b7cd3b2b983600001518460200151604051602001610201939291909283526020830191909152604082015260600190565b6000807f08c69a206c06f5334b35ceb1186181a713b21aff02cf66285f375084fbef2eb861044b8460000151610298565b61034d85602001516103c9565b6000606060005b8351811015610300578161048b85838151811061047e5761047e610cdc565b602002602001015161036c565b60405160200161049c929190610cf2565b604051602081830303815290604052915080806104b890610d33565b91505061045f565b6000606060005b835181101561030057816104f38583815181106104e6576104e6610cdc565b6020026020010151610193565b604051602001610504929190610cf2565b6040516020818303038152906040529150808061052090610d33565b9150506104c7565b6000807fb16dfdb3b8fa033fe30ac976cd4a50ad256b6811c80d90fcd0b323eec190047d83600001518460200151856040015180519060200120604051602001610201949392919093845273ffffffffffffffffffffffffffffffffffffffff9290921660208401526040830152606082015260800190565b634e487b7160e01b600052604160045260246000fd5b6040805190810167ffffffffffffffff811182821017156105da576105da6105a1565b60405290565b6040516060810167ffffffffffffffff811182821017156105da576105da6105a1565b604051601f8201601f1916810167ffffffffffffffff8111828210171561062c5761062c6105a1565b604052919050565b803573ffffffffffffffffffffffffffffffffffffffff8116811461065857600080fd5b919050565b600082601f83011261066e57600080fd5b813567ffffffffffffffff811115610688576106886105a1565b61069b601f8201601f1916602001610603565b8181528460208386010111156106b057600080fd5b816020850160208301376000918101602001919091529392505050565b6000604082840312156106df57600080fd5b6106e76105b7565b90506106f282610634565b8152602082013567ffffffffffffffff81111561070e57600080fd5b61071a8482850161065d565b60208301525092915050565b60006020828403121561073857600080fd5b813567ffffffffffffffff81111561074f57600080fd5b61075b848285016106cd565b949350505050565b600067ffffffffffffffff82111561077d5761077d6105a1565b5060051b60200190565b600082601f83011261079857600080fd5b813560206107ad6107a883610763565b610603565b82815260059290921b840181019181810190868411156107cc57600080fd5b8286015b8481101561080c57803567ffffffffffffffff8111156107f05760008081fd5b6107fe8986838b01016106cd565b8452509183019183016107d0565b509695505050505050565b60006060828403121561082957600080fd5b6108316105e0565b905061083c82610634565b815260208201356020820152604082013567ffffffffffffffff81111561086257600080fd5b61086e84828501610787565b60408301525092915050565b60006020828403121561088c57600080fd5b813567ffffffffffffffff8111156108a357600080fd5b61075b84828501610817565b6000606082840312156108c157600080fd5b6108c96105e0565b90506108d482610634565b815260208201356020820152604082013567ffffffffffffffff8111156108fa57600080fd5b61086e8482850161065d565b60006040828403121561091857600080fd5b6109206105b7565b9050813567ffffffffffffffff8082111561093a57600080fd5b61094685838601610817565b8352602084013591508082111561095c57600080fd5b5061071a8482850161065d565b600082601f83011261097a57600080fd5b8135602061098a6107a883610763565b82815260059290921b840181019181810190868411156109a957600080fd5b8286015b8481101561080c57803567ffffffffffffffff8111156109cd5760008081fd5b6109db8986838b0101610906565b8452509183019183016109ad565b6000604082840312156109fb57600080fd5b610a036105b7565b9050813567ffffffffffffffff80821115610a1d57600080fd5b610a29858386016108af565b83526020840135915080821115610a3f57600080fd5b5061071a84828501610969565b600082601f830112610a5d57600080fd5b81356020610a6d6107a883610763565b82815260059290921b84018101918181019086841115610a8c57600080fd5b8286015b8481101561080c57803567ffffffffffffffff811115610ab05760008081fd5b610abe8986838b01016109e9565b845250918301918301610a90565b600060208284031215610ade57600080fd5b813567ffffffffffffffff811115610af557600080fd5b61075b84828501610a4c565b600060208284031215610b1357600080fd5b813567ffffffffffffffff811115610b2a57600080fd5b61075b848285016109e9565b600060208284031215610b4857600080fd5b813567ffffffffffffffff811115610b5f57600080fd5b61075b84828501610906565b600060408284031215610b7d57600080fd5b610b856105b7565b9050813581526020820135602082015292915050565b600060408284031215610bad57600080fd5b610bb78383610b6b565b9392505050565b600060208284031215610bd057600080fd5b813567ffffffffffffffff80821115610be857600080fd5b9083019060608286031215610bfc57600080fd5b610c046105b7565b823582811115610c1357600080fd5b610c1f87828601610a4c565b825250610c2f8660208501610b6b565b602082015295945050505050565b600060208284031215610c4f57600080fd5b813567ffffffffffffffff811115610c6657600080fd5b61075b84828501610969565b600060208284031215610c8457600080fd5b813567ffffffffffffffff811115610c9b57600080fd5b61075b84828501610787565b600060208284031215610cb957600080fd5b813567ffffffffffffffff811115610cd057600080fd5b61075b848285016108af565b634e487b7160e01b600052603260045260246000fd5b6000835160005b81811015610d135760208187018101518583015201610cf9565b81811115610d22576000828501525b509190910191825250602001919050565b600060018201610d5357634e487b7160e01b600052601160045260246000fd5b506001019056fea2646970667358221220870ba7267d246dfcd8cef843cdf5f0f16bc52db147aacd73a1f5902bc7c3373964736f6c634300080f0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

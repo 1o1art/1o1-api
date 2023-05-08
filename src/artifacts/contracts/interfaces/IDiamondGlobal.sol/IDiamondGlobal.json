@@ -1,0 +1,36 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IDiamondGlobal",
+  "sourceName": "contracts/interfaces/IDiamondGlobal.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "namespace",
+              "type": "bool"
+            },
+            {
+              "internalType": "address",
+              "name": "diamondAddress",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct LibDiamond.GlobalDiamondProxy[]",
+          "name": "diamondProxy",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "setGlobalDiamondProxy",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

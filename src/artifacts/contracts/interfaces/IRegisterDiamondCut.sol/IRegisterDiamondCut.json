@@ -1,0 +1,63 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IRegisterDiamondCut",
+  "sourceName": "contracts/interfaces/IRegisterDiamondCut.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "facetAddress",
+                  "type": "address"
+                },
+                {
+                  "internalType": "enum IDiamondCut.FacetCutAction",
+                  "name": "action",
+                  "type": "uint8"
+                },
+                {
+                  "internalType": "bytes4[]",
+                  "name": "functionSelectors",
+                  "type": "bytes4[]"
+                }
+              ],
+              "internalType": "struct IDiamondCut.FacetCut",
+              "name": "facetCut",
+              "type": "tuple"
+            },
+            {
+              "internalType": "bytes20",
+              "name": "id",
+              "type": "bytes20"
+            }
+          ],
+          "internalType": "struct IRegisterDiamondCut.RegisterFacetCut[]",
+          "name": "_diamondCut",
+          "type": "tuple[]"
+        },
+        {
+          "internalType": "address",
+          "name": "_init",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_calldata",
+          "type": "bytes"
+        }
+      ],
+      "name": "diamondCutRegister",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

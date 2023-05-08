@@ -1,0 +1,344 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IERC721Token",
+  "sourceName": "contracts/interfaces/IERC721Token.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "base64Animation",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "chunkNo",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "numChunks",
+          "type": "uint256"
+        }
+      ],
+      "name": "addTokenAnimationChunk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "base64Animation",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "chunkNo",
+          "type": "uint256"
+        }
+      ],
+      "name": "addTokenAnimationChunk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "base64Image",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "chunkNo",
+          "type": "uint256"
+        }
+      ],
+      "name": "addTokenImageChunk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "base64Image",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "chunkNo",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "numChunks",
+          "type": "uint256"
+        }
+      ],
+      "name": "addTokenImageChunk",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contractURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMissingTokenChunks",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "totalSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTokenChunkBoundaries",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTotalTokenChunks",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "base64Image",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "base64Animation",
+          "type": "string"
+        },
+        {
+          "internalType": "enum LibImageStorage.ResolutionMethod",
+          "name": "imageMethod",
+          "type": "uint8"
+        },
+        {
+          "internalType": "enum LibImageStorage.ResolutionMethod",
+          "name": "animationMethod",
+          "type": "uint8"
+        },
+        {
+          "internalType": "address",
+          "name": "toAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalImgSize",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalAnimSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "base64Image",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "base64Animation",
+          "type": "string"
+        },
+        {
+          "internalType": "enum LibImageStorage.ResolutionMethod",
+          "name": "imageMethod",
+          "type": "uint8"
+        },
+        {
+          "internalType": "enum LibImageStorage.ResolutionMethod",
+          "name": "animationMethod",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint32",
+          "name": "numTokens",
+          "type": "uint32"
+        },
+        {
+          "internalType": "address",
+          "name": "toAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalImgSize",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalAnimSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "mintBatch",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "numTokens",
+          "type": "uint32"
+        },
+        {
+          "internalType": "address",
+          "name": "toAddress",
+          "type": "address"
+        }
+      ],
+      "name": "mintExtBatch",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32[]",
+          "name": "dataKeys",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "bytes[]",
+          "name": "dataValues",
+          "type": "bytes[]"
+        }
+      ],
+      "name": "setTokenMetadata",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_wallet",
+          "type": "address"
+        }
+      ],
+      "name": "walletOfOwner",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

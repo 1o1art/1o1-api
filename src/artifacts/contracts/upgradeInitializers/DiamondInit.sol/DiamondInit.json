@@ -1,0 +1,18 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "DiamondInit",
+  "sourceName": "contracts/upgradeInitializers/DiamondInit.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "init",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6080604052348015600f57600080fd5b50606580601d6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063e1c7392a14602d575b600080fd5b00fea264697066735822122040e59b5049fdd0f72119ffcdda0f28e555d489faaceec59691342cca7efc29f964736f6c634300080f0033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063e1c7392a14602d575b600080fd5b00fea264697066735822122040e59b5049fdd0f72119ffcdda0f28e555d489faaceec59691342cca7efc29f964736f6c634300080f0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
