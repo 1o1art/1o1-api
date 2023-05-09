@@ -1,20 +1,21 @@
 {
-  "name": "1o1-art",
+  "name": "@1o1art/api-client",
   "version": "0.0.0-development",
   "private": true,
   "homepage": "https://1o1.art",
   "description": "1of1 creation on-chain NFTs with delegation cli preview",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "dev": "npx tsc",
-    "build": "npx hardhat compile && npm run contract:types && next build",
+    "compile": "npx tsc",
+    "build": "npm run gen && npm run compile",
     "gen": "rm src/artifacts/contracts/facets/**/*.dbg.json; typechain --target ethers-v5 --out-dir src/generated/typechain src/artifacts/contracts/facets/**/*.json",
     "start": "next start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/1o1art/1o1art.git"
+    "url": "https://github.com/1o1art/1o1-api.git"
   },
   "author": "Shane Jonas, Zane Starr",
   "bugs": {
@@ -45,7 +46,8 @@
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "typechain": "^8.1.1",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "semantic-release": "^21.0.2"
   },
   "dependencies": {
     "@erc725/erc725.js": "^0.17.2",
@@ -113,5 +115,8 @@
     ],
     "resetMocks": true
   },
-  "eslintConfig": {}
+  "eslintConfig": {},
+  "publishConfig": {
+    "access": "restricted"
+  }
 }
