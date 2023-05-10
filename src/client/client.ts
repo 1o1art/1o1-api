@@ -2,7 +2,7 @@ import * as config from "../config";
 import { BigNumber } from "ethers";
 import { ethers } from "ethers";
 import { NftContractBuilder } from "./nftBuilder";
-import { getAllFacets } from "../lib/coreFacets";
+import { getAllFacets, getContractFacets } from "../lib/coreFacets";
 import presets from "../metadata/presets.json";
 import { Cut, FacetCutAction } from "../lib/facets";
 import * as contracts from "../generated/typechain";
@@ -13,6 +13,11 @@ export interface ContractsByOwner {
   contractAddrs: string[];
   count: BigNumber;
   total: BigNumber;
+}
+
+export interface NftContractData {
+  nftContract: contracts.ERC721TokenBaseFacet;
+  builder: NftContractBuilder;
 }
 
 export class ClientFactory {
@@ -42,14 +47,27 @@ export class ClientFactory {
           total
         };
       },
-      getNftContract: async (
-        address: string
-      ): Promise<contracts.ERC721TokenBaseFacet> => {
+      getNftContractData: async (address: string): Promise<NftContractData> => {
         const erc721 = contracts.ERC721TokenBaseFacet__factory.connect(
           address,
           signer
         );
-        return erc721;
+
+        const builder = new NftContractBuilder(signer, cfg);
+        const rawFacetData = await getContractFacets(address, cfg.name);
+        builder.setFacets(
+          rawFacetData.map((f) => {
+            return {
+              action: FacetCutAction.Add,
+              facetAddress: f.facetAddress,
+              functionSelectors: f.functionSelectors
+            };
+          })
+        );
+        return {
+          nftContract: erc721,
+          builder
+        };
       },
       createNftContractBuilder: (): NftContractBuilder => {
         return new NftContractBuilder(signer, cfg);
@@ -85,7 +103,7 @@ export interface Client {
     limit: number,
     sortOrder: string
   ): Promise<ContractsByOwner>;
-  getNftContract(address: string): Promise<contracts.ERC721TokenBaseFacet>;
+  getNftContractData(address: string): Promise<NftContractData>;
   createNftContractBuilder(): NftContractBuilder;
   getPresetFacets(presetName: string): Promise<Cut[]>;
 }

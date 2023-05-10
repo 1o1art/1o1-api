@@ -3,8 +3,10 @@ import { ImageType } from "../types";
 import { createSingleTxNFTContract } from "../lib/contract";
 import * as config from "../config";
 import { TokenData, updateTokenData } from "../lib/token";
-import { Cut } from "../lib/facets";
+import { Cut, FacetCutAction, getFacets } from "../lib/facets";
 import { mintTokenWithResult } from "../lib/macro";
+import { updateFacets } from "../lib/facetUtils";
+import { setContractMetadata } from "../lib/collection";
 
 export interface ContractMetadata {
   name: string;
@@ -13,7 +15,11 @@ export interface ContractMetadata {
 }
 
 export class NftContractBuilder {
-  metadata = {};
+  metadata: ContractMetadata = {
+    name: "",
+    symbol: "",
+    description: ""
+  };
   facets: Cut[] = [];
   image = "";
   imageType?: ImageType;
@@ -41,9 +47,20 @@ export class NftContractBuilder {
     return this;
   }
 
+  // update the facets
+  async updateFacets(contractAddr: string, facetCuts: Cut[]) {
+    await updateFacets(contractAddr, this.signer, facetCuts);
+    const facets = await getFacets(contractAddr, this.signer);
+    this.facets = facets.map((f) => ({ ...f, action: FacetCutAction.Add }));
+  }
+
+  async updateMetadata(contractAddr: string, metadata: ContractMetadata) {
+    await setContractMetadata(this.signer, contractAddr, metadata);
+    this.metadata = metadata;
+  }
+
   async deploy() {
     return createSingleTxNFTContract(this.signer, this.facets, this.metadata);
-    // const addr = await createSingleTxNFTContract(signer,[],metadata);
   }
 }
 
@@ -87,6 +104,7 @@ export class NftTokenBuilder {
     this.metadata.tokenAttributes = attrs;
     return this;
   }
+
   async mint(toAddr: string) {
     const imageMethod = this.imageType === "offchain" ? 2 : 1;
     const animMethod = this.imageType === "offchain" ? 2 : 1;
@@ -102,8 +120,8 @@ export class NftTokenBuilder {
     );
     return result.tokenId;
   }
+
   async updateMetadata(tokenId: number, metadata: Partial<TokenData>) {
-    //NOTE this sets the data, missing fields are considered empty
     await updateTokenData(tokenId, this.addr, metadata, this.signer);
     this.metadata = metadata;
     return this.metadata;
