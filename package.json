@@ -15,11 +15,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/1o1art/sdk.git"
+    "url": "https://github.com/1o1art/1o1-sdk.git"
   },
   "author": "Shane Jonas, Zane Starr",
   "bugs": {
-    "url": "https://github.com/1o1art"
+    "url": "https://github.com/1o1art/1o1-sdk"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",
