@@ -85,6 +85,9 @@
       "last 1 safari version"
     ]
   },
+  "files": [
+    "build/"
+  ],
   "jest": {
     "roots": [
       "<rootDir>/src"
