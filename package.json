@@ -86,7 +86,7 @@
     ]
   },
   "files": [
-    "build/"
+    "build/**/*"
   ],
   "jest": {
     "roots": [
