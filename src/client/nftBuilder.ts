@@ -2,11 +2,14 @@ import { ethers } from "ethers";
 import { ImageType } from "../types";
 import { createSingleTxNFTContract } from "../lib/contract";
 import * as config from "../config";
-import { TokenData, updateTokenData } from "../lib/token";
+import { TokenData, TokenMetadata, updateTokenData } from "../lib/token";
 import { Cut, FacetCutAction, getFacets } from "../lib/facets";
 import { mintTokenWithResult } from "../lib/macro";
 import { updateFacets } from "../lib/facetUtils";
 import { setContractMetadata } from "../lib/collection";
+import { contracts } from "..";
+import { convertTokenUriData } from "../lib/utils";
+import { token } from "../lib";
 
 export interface ContractMetadata {
   name: string;
@@ -119,6 +122,19 @@ export class NftTokenBuilder {
       toAddr
     );
     return result.tokenId;
+  }
+
+  async getTokenMetadata(tokenId: number): Promise<Partial<TokenMetadata>> {
+    const nftContract = contracts.ERC721TokenBaseFacet__factory.connect(
+      this.addr,
+      this.signer
+    );
+    const tokenURIBase64Encoded = await nftContract.tokenURI(tokenId);
+    const tokenMetadata = JSON.parse(
+      convertTokenUriData(tokenURIBase64Encoded)
+    ) as token.TokenMetadata;
+
+    return tokenMetadata;
   }
 
   async updateMetadata(tokenId: number, metadata: Partial<TokenData>) {
