@@ -1,9 +1,9 @@
 //construct 1o1 client
-import { ClientFactory } from "../src";
+import { ClientFactory, NftTokenBuilder } from "../src";
 import dotenv from "dotenv";
-import { NftTokenBuilder } from "../src/client/nftBuilder";
-import { utils } from "../src";
-import { TokenMetadata } from "../src/lib/token";
+import { utils } from "../src/lib";
+import { token } from "../src/lib";
+import { FacetCutAction } from "../src/lib/facets";
 
 dotenv.config();
 const PRIV_KEY = process.env.PRIV_KEY || "throw no private key set";
@@ -45,12 +45,16 @@ const main = async () => {
       "ipfs://QmNoDT3M1FfF7d3Pd9DkBfzz8NxHueeudWBPe9owt1PnRM",
       "offchain"
     )
+    .setAnimation(
+      "ipfs://QmTwnLtm7TkmaYJFrYFvsupedP3n51vu6czmVKiED5GyAX",
+      "offchain"
+    )
     .setDesc("This is my NFT")
     .setName("My NFT")
     .setAttributes({ key: "value", otherKey: "value" })
     .mint(mintToAddress);
 
-  const contracts = await client.getContractsByOwner(
+  const contractsByOwner = await client.getContractsByOwner(
     nftContractBuilder.signer.address,
     0,
     100,
@@ -58,19 +62,19 @@ const main = async () => {
   );
   console.log(
     `addr: ${
-      contracts.contractAddrs
-    } total: ${contracts.total.toString()} count: ${contracts.count.toString()}`
+      contractsByOwner.contractAddrs
+    } total: ${contractsByOwner.total.toString()} count: ${contractsByOwner.count.toString()}`
   );
 
-  const nftContract = await client.getNftContract(contractAddr);
+  const { nftContract } = await client.getNftContractData(contractAddr);
 
   // Use the contract to get the tokenURI aka the token Metadata
   const tokenURIBase64Encoded = await nftContract.tokenURI(tokenID);
 
   // get the token Metadata for the minted token
-  let tokenMetadata: TokenMetadata = JSON.parse(
+  let tokenMetadata: token.TokenMetadata = JSON.parse(
     utils.convertTokenUriData(tokenURIBase64Encoded)
-  ) as TokenMetadata;
+  ) as token.TokenMetadata;
 
   console.log(`Token Metadata: ${JSON.stringify(tokenMetadata, null, 2)}`);
 
@@ -87,11 +91,38 @@ const main = async () => {
 
   tokenMetadata = JSON.parse(
     utils.convertTokenUriData(updatedTokenURIResponse)
-  ) as TokenMetadata;
+  ) as token.TokenMetadata;
 
   console.log(
     `Updated Token Metadata: ${JSON.stringify(tokenMetadata, null, 2)}`
   );
+
+  const nftData = await client.getNftContractData(contractAddr);
+  const { builder } = nftData;
+  const contract = nftData.nftContract;
+  /* 
+  
+  const removeFacet = [{ ...builder.facets[0], action: FacetCutAction.Remove }];
+  // Remove the facet
+  await builder.updateFacets(contractAddr, removeFacet);
+
+  // Add a facet
+  await builder.updateFacets(contractAddr, [
+    {
+      ...removeFacet[0],
+      action: FacetCutAction.Add
+    }
+  ]);
+  */
+
+  await builder.updateMetadata(contractAddr, {
+    ...builder.metadata,
+    name: "New Contract Name",
+    symbol: "",
+    description: ""
+  });
+
+  console.log(await contract.contractURI());
 };
 
 main();
