@@ -21,6 +21,7 @@ export interface TokenMetadata {
   image: string;
   attributes: TraitType[];
 }
+
 export const parseTokenUriData = (data: string) => {
   const splitter = "data:application/json;base64,";
   const res = JSON.parse(
