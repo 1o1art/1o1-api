@@ -50,7 +50,6 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "@1o1art/api-client": "file:1o1art-api-client-0.0.0-development.tgz",
     "@erc725/erc725.js": "^0.17.2",
     "@etclabscore/eserialize": "^1.1.2",
     "@pinata/sdk": "^2.1.0",
