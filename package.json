@@ -1,5 +1,5 @@
 {
-  "name": "@1o1art/api-client",
+  "name": "@1o1art/sdk",
   "version": "0.0.0-development",
   "private": true,
   "homepage": "https://1o1.art",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/1o1art/1o1-api.git"
+    "url": "https://github.com/1o1art/sdk.git"
   },
   "author": "Shane Jonas, Zane Starr",
   "bugs": {
@@ -42,14 +42,15 @@
     "prettier": "^2.3.2",
     "prettier-eslint-cli": "^7.1.0",
     "prettier-plugin-solidity": "^1.0.0-beta.13",
+    "semantic-release": "^21.0.2",
     "standard": "^16.0.3",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "typechain": "^8.1.1",
-    "typescript": "^4.8.4",
-    "semantic-release": "^21.0.2"
+    "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@1o1art/api-client": "file:1o1art-api-client-0.0.0-development.tgz",
     "@erc725/erc725.js": "^0.17.2",
     "@etclabscore/eserialize": "^1.1.2",
     "@pinata/sdk": "^2.1.0",
