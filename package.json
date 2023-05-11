@@ -24,7 +24,6 @@
   "devDependencies": {
     "@types/chai": "^4.3.4",
     "@types/fs-extra": "^9.0.13",
-    "@types/isomorphic-fetch": "0.0.36",
     "@types/jest": "^29.4.3",
     "@types/lodash": "^4.14.178",
     "@types/mime-types": "^2.1.1",
@@ -33,12 +32,10 @@
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "chai": "^4.3.7",
-    "dotenv": "^8.6.0",
     "eslint-config-prettier": "^8.5.0",
     "ethers": "^5.5.3",
     "fs-extra": "^0.30.0",
     "jest": "^29.5.0",
-    "node-polyfill-webpack-plugin": "^2.0.1",
     "prettier": "^2.3.2",
     "prettier-eslint-cli": "^7.1.0",
     "prettier-plugin-solidity": "^1.0.0-beta.13",
@@ -47,31 +44,21 @@
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "typechain": "^8.1.1",
-    "typescript": "^4.8.4"
-  },
-  "dependencies": {
-    "@erc725/erc725.js": "^0.17.2",
-    "@etclabscore/eserialize": "^1.1.2",
-    "@pinata/sdk": "^2.1.0",
-    "@typechain/ethers-v5": "^10.2.0",
-    "@xstate/inspect": "^0.8.0",
-    "autoprefixer": "^10.4.12",
-    "bufferutil": "^4.0.7",
+    "typescript": "^4.8.4",
     "dotenv": "^10.0.0",
     "dotenv-expand": "^5.1.0",
-    "eslint": "^8.3.0",
-    "eslint-config-react-app": "^7.0.1",
     "eslint-webpack-plugin": "^3.1.1",
-    "fast-csv": "^4.3.6",
-    "fast-safe-stringify": "^2.1.1",
-    "ipfs": "^0.66.0",
-    "ipfs-core": "^0.18.0",
-    "isomorphic-fetch": "^3.0.0",
+    "eslint": "^8.3.0"
+  },
+  "dependencies": {
+    "@typechain/ethers-v5": "^10.2.0",
+    "@erc725/erc725.js": "^0.17.2",
+    "autoprefixer": "^10.4.12",
+    "bufferutil": "^4.0.7",
     "lodash": "^4.17.21",
     "mime": "^1.6.0",
     "mime-types": "^2.1.35",
-    "utf-8-validate": "^5.0.10",
-    "xstate": "^4.37.0"
+    "utf-8-validate": "^5.0.10"
   },
   "browserslist": {
     "production": [
