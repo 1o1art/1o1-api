@@ -1,7 +1,7 @@
 {
   "name": "@1o1art/sdk",
   "version": "0.0.0-development",
-  "private": true,
+  "private": false,
   "homepage": "https://1o1.art",
   "description": "1of1 creation on-chain NFTs with delegation cli preview",
   "main": "build/index.js",
