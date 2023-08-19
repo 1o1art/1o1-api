@@ -16,9 +16,9 @@ import {
   ERC725YFacet__factory,
   DiamondContractLauncherFacet__factory,
   RegisterDiamondCutFacet__factory
-} from "../generated/typechain";
+} from "@1o1art/1o1-contracts/build/typechain-types";
 import { getConfigByName } from "./config";
-import facetDB from "../metadata/facets.json";
+import { facetsConfig } from "@1o1art/1o1-contracts";
 import * as schemas from "./schemas";
 
 export function getAllFacetIds() {
@@ -124,7 +124,7 @@ export function getFacetNames(facetIds: Set<string>): string[] {
   return Array.from(facetIds)
     .map((id) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const entry = (facetDB as any)[id];
+      const entry = (facetsConfig as any)[id];
       return entry ? entry.name : null;
     })
     .filter((f) => f !== null);
@@ -533,14 +533,14 @@ export const getBaseFacetDataFrom725 = async (
       .map(([, value]: [string, any]) => {
         const entry = JSON.parse(value) as FacetRegistryEntry;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const rest = (facetDB as any)[entry.id]
+        const rest = (facetsConfig as any)[entry.id]
           ? {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              category: (facetDB as any)[entry.id].category,
+              category: (facetsConfig as any)[entry.id].category,
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              desc: (facetDB as any)[entry.id].desc,
+              desc: (facetsConfig as any)[entry.id].desc,
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              ...(facetDB as any)[entry.id]
+              ...(facetsConfig as any)[entry.id]
             }
           : { category: ["custom"], desc: "", type: "non-essential" };
         return {

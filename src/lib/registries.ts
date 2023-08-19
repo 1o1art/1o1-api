@@ -1,5 +1,5 @@
 import { BigNumber, ethers } from "ethers";
-import * as contracts from "../generated/typechain";
+import { contracts } from "@1o1art/1o1-contracts";
 // Registries are diamond contracts that are used to group together and label/package facets,
 // There can be multiple registries, which can be useful for sharing, but initially, there will
 // only be one registry. Users can use this to add facets to to be able to use them in

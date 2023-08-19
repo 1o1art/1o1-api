@@ -1,6 +1,6 @@
-import * as contracts from "../generated/typechain";
+import { contracts } from "@1o1art/1o1-contracts";
 import { ethers } from "ethers";
-import * as launcherConfig from "../config/deployed.json";
+import { launcherDeployed as launcherConfig } from "@1o1art/1o1-contracts";
 import { getLaunchEventFromLogs } from "./utils";
 import { Cut, getZeroAddressStr } from "./facets";
 import { getConfigById } from "./config";

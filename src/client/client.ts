@@ -1,11 +1,11 @@
-import * as config from "../config";
+import { config } from "@1o1art/1o1-contracts";
 import { BigNumber } from "ethers";
 import { ethers } from "ethers";
 import { NftContractBuilder } from "./nftBuilder";
 import { getAllFacets, getContractFacets } from "../lib/coreFacets";
 import presets from "../metadata/presets.json";
 import { Cut, FacetCutAction } from "../lib/facets";
-import * as contracts from "../generated/typechain";
+import { contracts } from "@1o1art/1o1-contracts";
 
 type PresetName = "delegatable" | "basic";
 
@@ -56,13 +56,15 @@ export class ClientFactory {
         const builder = new NftContractBuilder(signer, cfg);
         const rawFacetData = await getContractFacets(address, cfg.name);
         builder.setFacets(
-          rawFacetData.map((f) => {
-            return {
-              action: FacetCutAction.Add,
-              facetAddress: f.facetAddress,
-              functionSelectors: f.functionSelectors
-            };
-          })
+          rawFacetData.map(
+            (f: { facetAddress: string; functionSelectors: string[] }) => {
+              return {
+                action: FacetCutAction.Add,
+                facetAddress: f.facetAddress,
+                functionSelectors: f.functionSelectors
+              };
+            }
+          )
         );
         return {
           nftContract: erc721,

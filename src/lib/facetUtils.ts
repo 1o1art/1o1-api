@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { Cut, FacetCutAction, simpleDiamondCut } from "./facets";
-import * as contracts from "../generated/typechain";
+import { contracts } from "@1o1art/1o1-contracts";
 
 export async function updateFacets(
   contractAddr: string,

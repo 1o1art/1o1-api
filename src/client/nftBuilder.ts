@@ -1,13 +1,12 @@
 import { ethers } from "ethers";
 import { ImageType } from "../types";
 import { createSingleTxNFTContract } from "../lib/contract";
-import * as config from "../config";
 import { TokenData, TokenMetadata, updateTokenData } from "../lib/token";
 import { Cut, FacetCutAction, getFacets } from "../lib/facets";
 import { mintTokenWithResult } from "../lib/macro";
 import { updateFacets } from "../lib/facetUtils";
 import { setContractMetadata } from "../lib/collection";
-import { contracts } from "..";
+import { contracts, config } from "@1o1art/1o1-contracts";
 import { convertTokenUriData } from "../lib/utils";
 import { token } from "../lib";
 
@@ -54,6 +53,7 @@ export class NftContractBuilder {
   async updateFacets(contractAddr: string, facetCuts: Cut[]) {
     await updateFacets(contractAddr, this.signer, facetCuts);
     const facets = await getFacets(contractAddr, this.signer);
+    facets[0].facetAddress;
     this.facets = facets.map((f) => ({ ...f, action: FacetCutAction.Add }));
   }
 

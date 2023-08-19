@@ -8,9 +8,9 @@ import {
   getFacets
 } from "./facets";
 import { getRegistries } from "./registries";
-import globalDeployed from "../config/globalDeployed.json";
-import facetsDB from "../metadata/facets.json";
-import { IDiamondLoupe } from "../generated/typechain/DiamondLoupeFacet";
+import { registryDeployed as globalDeployed } from "@1o1art/1o1-contracts";
+import { facetsConfig } from "@1o1art/1o1-contracts";
+import { IDiamondLoupe } from "@1o1art/1o1-contracts/build/typechain-types";
 
 export const getAllFacetDataFromRegistry = async (
   chainName: string,
@@ -187,7 +187,7 @@ export const getFacetMetadataFromContract = async (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((facetId: string) =>
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (facetsDB as any)[facetId] ? (facetsDB as any)[facetId] : null
+        (facetsConfig as any)[facetId] ? (facetsConfig as any)[facetId] : null
       )
       .filter((f: string) => f !== null)
   );

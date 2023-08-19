@@ -1,7 +1,7 @@
 import { ERC725 } from "@erc725/erc725.js";
 import { ethers } from "ethers";
 import { base64, EventFragment } from "ethers/lib/utils";
-import * as contracts from "../generated/typechain";
+import { contracts } from "@1o1art/1o1-contracts";
 import { SCHEMAS } from "./schemas";
 import mime from "mime-types";
 import chainList from "../metadata/chains.json";

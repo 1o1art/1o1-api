@@ -1,4 +1,4 @@
-import deployedContracts from "../config/deployed.json";
+import { launcherDeployed as deployedContracts } from "@1o1art/1o1-contracts";
 
 // Entries for different networks go here
 export enum NetworkChainId {

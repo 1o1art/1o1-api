@@ -1,6 +1,6 @@
 import { BigNumber, ethers } from "ethers";
-import * as contracts from "../generated/typechain";
-import { LibDiamond } from "../generated/typechain/DiamondContractLauncherFacet";
+import { contracts } from "@1o1art/1o1-contracts";
+import { LibDiamond } from "@1o1art/1o1-contracts/build/typechain-types/contracts/libraries/LibDiamond";
 import { Cut, calculate4BytePrefix, getFacetVersion } from "../lib/facets";
 import {
   convertTokenUriData,
@@ -8,7 +8,7 @@ import {
   getMintEventFromLogs
 } from "./utils";
 import { packVersion } from "./facetVersion";
-import globalDeployed from "../config/globalDeployed.json";
+import { registryDeployed as globalDeployed } from "@1o1art/1o1-contracts";
 import { getConfigById } from "./config";
 import { prepareCallDataWithIndex, generatePlaceholder } from "./multi";
 import { TokenData, encodeTokenData } from "./token";
