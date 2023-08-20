@@ -21,11 +21,23 @@ export interface NftContractData {
 }
 
 export class ClientFactory {
-  static async makeClient(privateKey: string, rpcUrl: string): Promise<Client> {
+  static async makeClientFromWallet(wallet: ethers.Wallet): Promise<Client> {
+    return await ClientFactory.makeClientCore(wallet);
+  }
+
+  static async makeClientFromKey(
+    privateKey: string,
+    rpcUrl: string
+  ): Promise<Client> {
     const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
     const signer = new ethers.Wallet(privateKey, provider);
+    return await ClientFactory.makeClientCore(signer);
+  }
+
+  private static async makeClientCore(signer: ethers.Wallet) {
     const chainId = await signer.getChainId();
     const cfg = config.getConfigById(chainId);
+
     return {
       getContractsByOwner: async (
         owner: string,

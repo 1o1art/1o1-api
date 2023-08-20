@@ -8,7 +8,7 @@ const RPC_URL = process.env.RPC_URL || "throw no rpc url set";
 //construct nft using presets
 
 const main = async () => {
-  const client = await ClientFactory.makeClient(PRIV_KEY, RPC_URL);
+  const client = await ClientFactory.makeClientFromKey(PRIV_KEY, RPC_URL);
   const nftContractBuilder = client.createNftContractBuilder();
   // Get the components you'd like to add to your blank smart contract
   // basic will load the bare minimum to make a contract, delegatable
