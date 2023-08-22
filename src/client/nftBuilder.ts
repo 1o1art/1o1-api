@@ -2,13 +2,25 @@ import { ethers } from "ethers";
 import { ImageType } from "../types";
 import { createSingleTxNFTContract } from "../lib/contract";
 import { TokenData, TokenMetadata, updateTokenData } from "../lib/token";
-import { Cut, FacetCutAction, getFacets } from "../lib/facets";
-import { mintTokenWithResult } from "../lib/macro";
+import {
+  Cut,
+  FacetCutAction,
+  getFacets,
+  getZeroAddressStr
+} from "../lib/facets";
+import { mintClaimWithResult, mintTokenWithResult } from "../lib/macro";
 import { updateFacets } from "../lib/facetUtils";
 import { setContractMetadata } from "../lib/collection";
 import { contracts, config } from "@1o1art/1o1-contracts";
-import { convertTokenUriData } from "../lib/utils";
+import { LibClaims } from "@1o1art/1o1-contracts/build/typechain-types/contracts/facets/ClaimsFacet";
+import { convertLocaleDateToYYMMDD, convertTokenUriData } from "../lib/utils";
 import { token } from "../lib";
+import {
+  FormattedClaimData,
+  convertLocaleTimeToUnixUTC,
+  getAllClaimDataFormatted
+} from "../lib/claim";
+import { getConfigById } from "../lib/config";
 
 export interface ContractMetadata {
   name: string;
@@ -64,6 +76,80 @@ export class NftContractBuilder {
 
   async deploy() {
     return createSingleTxNFTContract(this.signer, this.facets, this.metadata);
+  }
+}
+
+export class ClaimRuleBuilder {
+  claimLimit = 0;
+  startTime!: number;
+  endTime = 0;
+  price = 0;
+  maxEditionSize = 0;
+  royaltyBps = 0;
+  royaltyAddress = getZeroAddressStr();
+  payoutAddress = getZeroAddressStr();
+
+  setClaimLimit(limit: number) {
+    if (limit < 0) throw new Error("claim limit must be greater than -1");
+    this.claimLimit = limit;
+    return this;
+  }
+
+  setUnlimitedClaims() {
+    this.claimLimit = 0;
+    return this;
+  }
+
+  setEditionSize(editionSize: number) {
+    if (editionSize < 0) throw new Error("edition size must be greater than 0");
+    this.maxEditionSize = editionSize;
+    return this;
+  }
+
+  setStartTime(startTime: Date) {
+    const yymmDD = convertLocaleDateToYYMMDD(startTime);
+    const utcTime = convertLocaleTimeToUnixUTC(yymmDD);
+    this.startTime = utcTime;
+    return this;
+  }
+
+  setEndTime(endTime: Date) {
+    const yymmDD = convertLocaleDateToYYMMDD(endTime);
+    const utcTime = convertLocaleTimeToUnixUTC(yymmDD);
+    this.endTime = utcTime;
+    return this;
+  }
+
+  setPayoutAddress(payoutAddress: string) {
+    this.payoutAddress = payoutAddress;
+    return this;
+  }
+
+  setRoyaltyBps(royaltyBps: number) {
+    if (royaltyBps < 0 || royaltyBps > 10000)
+      throw new Error("royalty bps must be between 0 and 10000");
+    this.royaltyBps = royaltyBps;
+    return this;
+  }
+
+  setRoyaltyAddress(royaltyAddress: string) {
+    this.royaltyAddress = royaltyAddress;
+    return this;
+  }
+  build(): LibClaims.ClaimRuleStruct {
+    if (!this.startTime) {
+      throw new Error("start time must be set");
+    }
+    return {
+      claimLimit: this.claimLimit,
+      startTime: this.startTime,
+      endTime: this.endTime,
+      price: this.price,
+      maxEditionSize: this.maxEditionSize,
+      royaltyBps: this.royaltyBps,
+      royaltyAddress: this.royaltyAddress,
+      payoutAddress: this.payoutAddress
+    };
   }
 }
 
@@ -124,6 +210,27 @@ export class NftTokenBuilder {
     return result.tokenId;
   }
 
+  async createClaim(claimRule: LibClaims.ClaimRuleStruct) {
+    const claimData = {
+      claimName: this.metadata.tokenName,
+      claimDescription: this.metadata.tokenDescription,
+      claimAttributes: this.metadata.tokenAttributes
+    };
+
+    const result = await mintClaimWithResult(
+      this.addr,
+      this.image,
+      this.animation,
+      this.imageType === "offchain" ? 2 : 1,
+      this.animationType === "offchain" ? 2 : 1,
+      claimRule,
+      claimData,
+      this.signer
+    );
+
+    return result.claimId;
+  }
+
   async getTokenMetadata(tokenId: number): Promise<Partial<TokenMetadata>> {
     const nftContract = contracts.ERC721TokenBaseFacet__factory.connect(
       this.addr,
@@ -135,6 +242,18 @@ export class NftTokenBuilder {
     ) as token.TokenMetadata;
 
     return tokenMetadata;
+  }
+
+  async getClaimMetadata(
+    claimId: number
+  ): Promise<Partial<FormattedClaimData>> {
+    const config = getConfigById(await this.signer.getChainId());
+    return getAllClaimDataFormatted(
+      `${claimId}`,
+      config.name,
+      this.addr,
+      this.signer
+    );
   }
 
   async updateMetadata(tokenId: number, metadata: Partial<TokenData>) {
