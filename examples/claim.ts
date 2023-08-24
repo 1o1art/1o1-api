@@ -94,25 +94,6 @@ const main = async () => {
 
   // Set new metadata for the token
   await nftTokenBuilder.updateMetadata(parseInt(claimID), currentMetadata);
-
-  /*  tokenMetadata = await nftTokenBuilder.getTokenMetadata(parseInt(tokenID));
-  console.log(
-    `Updated Token Metadata: ${JSON.stringify(tokenMetadata, null, 2)}`
-  );
-
-  const nftData = await client.getNftContractData(contractAddr);
-  const { builder } = nftData;
-  const contract = nftData.nftContract;
-
-  await builder.updateMetadata(contractAddr, {
-    ...builder.metadata,
-    name: "New Contract Name",
-    symbol: "",
-    description: ""
-  });
-  */
-
-  //console.log(await contract.contractURI());
 };
 
 main();

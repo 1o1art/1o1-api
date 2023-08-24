@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NFT Creators</title>
+    <script type="module" src="/dist/index.mjs"></script>
+    <script type="module" src="/examples/web/mint.mjs"></script>
+    <script type="module">
+      import { getNetworks, mintExample } from "/examples/web/mint.mjs";
+
+      async function handleSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+        const title = document.getElementById("title").value || "Default Title";
+        const description =
+          document.getElementById("description").value || "Default Desc";
+        const url = await mintExample(title, description, (statusMsg) =>
+          alert(statusMsg)
+        );
+        document.getElementById("mintedToken").attributes.href.value = url;
+        document.getElementById("mintedToken").textContent = url;
+      }
+      async function switchNetwork() {
+        if (typeof window.ethereum !== "undefined") {
+          const chainId = document.getElementById("network").value;
+          try {
+            await window.ethereum.request({
+              method: "wallet_switchEthereumChain",
+              params: [{ chainId }]
+            });
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }
+
+      async function connectToChain() {
+        if (typeof window.ethereum !== "undefined") {
+          try {
+            // Request account access
+            await window.ethereum.request({ method: "eth_requestAccounts" });
+
+            // Update Connect button text
+            document.getElementById("connectBtn").textContent = "Connected";
+
+            // Optionally, after connecting, you can switch to the selected network
+            switchNetwork();
+          } catch (error) {
+            console.error("User denied account access");
+          }
+        } else {
+          console.error("Ethereum provider is not detected");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        console.log(await getNetworks());
+        (await getNetworks()).forEach((network) => {
+          const option = document.createElement("option");
+          option.value = `0x${Number(network.chainId).toString(16)}`;
+          option.textContent = network.name;
+          document.getElementById("network").appendChild(option);
+        });
+        document
+          .getElementById("connectBtn")
+          .addEventListener("click", connectToChain);
+        document
+          .querySelector("#create-contract")
+          .addEventListener("click", handleSubmit);
+        document
+          .querySelector("#network")
+          .addEventListener("change", switchNetwork);
+      });
+    </script>
+    <style>
+      /* Centering the form */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Create your NFT</h1>
+
+      <!-- Connect Button -->
+      <button id="connectBtn">Connect</button>
+      <br /><br />
+
+      <!-- Dropdown for Ethereum Networks -->
+      <label for="network">Choose Ethereum Network:</label>
+      <select name="network" id="network"></select>
+      <br /><br />
+
+      <!-- Input for NFT Title -->
+      <label for="title">NFT Title:</label>
+      <input type="text" id="title" name="title" required />
+      <br /><br />
+
+      <!-- Textarea for NFT Description -->
+      <label for="description">NFT Description:</label><br />
+      <textarea
+        id="description"
+        name="description"
+        rows="4"
+        cols="50"
+        required
+      ></textarea>
+      <br /><br />
+
+      <!-- Submit Button -->
+      <input id="create-contract" type="submit" value="Create NFT" />
+      <br />
+      <br />
+      <div>
+        <h1>Last Minted</h1>
+        <a id="mintedToken" href="#">Minted Token</a>
+      </div>
+    </div>
+  </body>
+</html>
