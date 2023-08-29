@@ -9,7 +9,7 @@
   "types": "build/index.d.ts",
   "scripts": {
     "compile": "npx tsc",
-    "build": "npm run gen && npm run compile",
+    "build": "npm run gen && npm run compile && npm run build:web",
     "build:web": "node esbuild.mjs",
     "gen": "rm src/artifacts/contracts/facets/**/*.dbg.json; typechain --target ethers-v5 --out-dir src/generated/typechain src/artifacts/contracts/facets/**/*.json",
     "start": "next start",
