@@ -1,7 +1,7 @@
 import { BigNumber } from "ethers";
 import * as schemas from "./schemas";
 import ERC725 from "@erc725/erc725.js";
-import facetDB from "../metadata/facets.json";
+import { facetsConfig } from "@1o1art/1o1-contracts";
 import * as ethers from "ethers";
 
 export interface Version {
@@ -71,7 +71,7 @@ export const getFacetVersionMetadataSchemaDecode = (
 
 export const getLatestFacetVersion = (id: string): Version => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const humanReadableVersion = (facetDB as any)[id]?.version;
+  const humanReadableVersion = (facetsConfig as any)[id]?.version;
   if (!humanReadableVersion) {
     return {
       major: 0,

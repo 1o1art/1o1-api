@@ -5,9 +5,8 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ["@typescript-eslint", "react", "react-hooks"],
+  plugins: ["@typescript-eslint"],
   extends: [
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],

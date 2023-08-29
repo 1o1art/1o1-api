@@ -1,14 +1,24 @@
-//construct 1o1 client
-import { ClientFactory, NftTokenBuilder } from "../src";
-import dotenv from "dotenv";
+import { ClientFactory, NftTokenBuilder, lib } from "/dist/index.mjs";
+import { ethers } from "/examples/web/ethers-5.6.esm.min.js";
 
-dotenv.config();
-const PRIV_KEY = process.env.PRIV_KEY || "throw no private key set";
-const RPC_URL = process.env.RPC_URL || "throw no rpc url set";
-//construct nft using presets
+export const getNetworks = async () => {
+  return lib.config.getNetworks();
+};
+export const mintExample = async (tokenName, tokenDesc, mintStatusCallback) => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-const main = async () => {
-  const client = await ClientFactory.makeClientFromKey(PRIV_KEY, RPC_URL);
+  // MetaMask requires requesting permission to connect users accounts
+  await provider.send("eth_requestAccounts", []);
+
+  // The MetaMask plugin also allows signing transactions to
+  // send ether and pay to change state within the blockchain.
+  // For this, you need the account signer...
+  const signer = await provider.getSigner();
+  const client = await ClientFactory.makeClientFromWallet(signer);
+  const chainId = await signer.getChainId();
+  const config = lib.config.getConfigById(chainId);
+  const chainName = config.name;
+
   const nftContractBuilder = client.createNftContractBuilder();
   // Get the components you'd like to add to your blank smart contract
   // basic will load the bare minimum to make a contract, delegatable
@@ -23,11 +33,13 @@ const main = async () => {
       "offchain"
     )
     .setMetadata({
-      name: "My NFT",
-      description: "This is my NFT",
+      name: "My Test NFT",
+      description: "This is my Test NFT",
       symbol: "API"
     })
     .deploy();
+
+  mintStatusCallback(`Deployed contract to ${contractAddr}`);
 
   const nftTokenBuilder = new NftTokenBuilder(
     nftContractBuilder.signer,
@@ -35,8 +47,9 @@ const main = async () => {
   );
 
   // This can be any address you'd like to mint to
-  const mintToAddress = nftContractBuilder.signer.address;
+  const mintToAddress = await nftContractBuilder.signer.getAddress();
 
+  mintStatusCallback(`Minting Token - ${contractAddr}`);
   const tokenID = await nftTokenBuilder
     .setImage(
       "ipfs://QmNoDT3M1FfF7d3Pd9DkBfzz8NxHueeudWBPe9owt1PnRM",
@@ -46,13 +59,15 @@ const main = async () => {
       "ipfs://QmTwnLtm7TkmaYJFrYFvsupedP3n51vu6czmVKiED5GyAX",
       "offchain"
     )
-    .setDesc("This is my NFT")
-    .setName("My NFT")
+    .setDesc(tokenDesc)
+    .setName(tokenName)
     .setAttributes({ key: "value", otherKey: "value" })
     .mint(mintToAddress);
 
+  console.log(`Minted token ${tokenID} to ${mintToAddress}`);
+
   const contractsByOwner = await client.getContractsByOwner(
-    nftContractBuilder.signer.address,
+    await nftContractBuilder.signer.getAddress(),
     0,
     100,
     "asc"
@@ -69,33 +84,7 @@ const main = async () => {
   let tokenMetadata = await nftTokenBuilder.getTokenMetadata(parseInt(tokenID));
 
   console.log(`Token Metadata: ${JSON.stringify(tokenMetadata, null, 2)}`);
+  console.log(await nftContract.contractURI());
 
-  // Get the previous metadata
-  const currentMetadata = nftTokenBuilder.metadata;
-
-  // Update the name
-  currentMetadata.tokenName = "New Name";
-
-  // Set new metadata for the token
-  await nftTokenBuilder.updateMetadata(parseInt(tokenID), currentMetadata);
-
-  tokenMetadata = await nftTokenBuilder.getTokenMetadata(parseInt(tokenID));
-  console.log(
-    `Updated Token Metadata: ${JSON.stringify(tokenMetadata, null, 2)}`
-  );
-
-  const nftData = await client.getNftContractData(contractAddr);
-  const { builder } = nftData;
-  const contract = nftData.nftContract;
-
-  await builder.updateMetadata(contractAddr, {
-    ...builder.metadata,
-    name: "New Contract Name",
-    symbol: "",
-    description: ""
-  });
-
-  console.log(await contract.contractURI());
+  return `https://1o1.art/${chainName}/token/${contractAddr}/${tokenID}`;
 };
-
-main();

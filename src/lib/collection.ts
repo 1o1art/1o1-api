@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { SCHEMAS, SCHEMAS_BY_NAME, SCHEMA_TYPE } from "./schemas";
 import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
-import * as contracts from "../generated/typechain";
+import {contracts} from "@1o1art/1o1-contracts";
 
 export interface ContractRoyaltyData {
   royaltyReceiver: string;

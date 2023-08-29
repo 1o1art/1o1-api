@@ -1,11 +1,11 @@
-import * as config from "../config";
+import { config } from "@1o1art/1o1-contracts";
 import { BigNumber } from "ethers";
 import { ethers } from "ethers";
 import { NftContractBuilder } from "./nftBuilder";
 import { getAllFacets, getContractFacets } from "../lib/coreFacets";
 import presets from "../metadata/presets.json";
 import { Cut, FacetCutAction } from "../lib/facets";
-import * as contracts from "../generated/typechain";
+import { contracts } from "@1o1art/1o1-contracts";
 
 type PresetName = "delegatable" | "basic";
 
@@ -21,11 +21,23 @@ export interface NftContractData {
 }
 
 export class ClientFactory {
-  static async makeClient(privateKey: string, rpcUrl: string): Promise<Client> {
+  static async makeClientFromWallet(wallet: ethers.Wallet): Promise<Client> {
+    return await ClientFactory.makeClientCore(wallet);
+  }
+
+  static async makeClientFromKey(
+    privateKey: string,
+    rpcUrl: string
+  ): Promise<Client> {
     const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
     const signer = new ethers.Wallet(privateKey, provider);
+    return await ClientFactory.makeClientCore(signer);
+  }
+
+  private static async makeClientCore(signer: ethers.Wallet) {
     const chainId = await signer.getChainId();
     const cfg = config.getConfigById(chainId);
+
     return {
       getContractsByOwner: async (
         owner: string,
@@ -56,13 +68,15 @@ export class ClientFactory {
         const builder = new NftContractBuilder(signer, cfg);
         const rawFacetData = await getContractFacets(address, cfg.name);
         builder.setFacets(
-          rawFacetData.map((f) => {
-            return {
-              action: FacetCutAction.Add,
-              facetAddress: f.facetAddress,
-              functionSelectors: f.functionSelectors
-            };
-          })
+          rawFacetData.map(
+            (f: { facetAddress: string; functionSelectors: string[] }) => {
+              return {
+                action: FacetCutAction.Add,
+                facetAddress: f.facetAddress,
+                functionSelectors: f.functionSelectors
+              };
+            }
+          )
         );
         return {
           nftContract: erc721,

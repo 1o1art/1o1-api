@@ -2,7 +2,9 @@ import { base64 } from "ethers/lib/utils";
 import { ERC725, ERC725JSONSchema } from "@erc725/erc725.js";
 import { ethers } from "ethers";
 import * as schemas from "./schemas";
-import { ERC725YFacet__factory } from "../generated/typechain";
+import { contracts } from "@1o1art/1o1-contracts";
+
+const ERC725YFacet__factory = contracts.ERC725YFacet__factory;
 
 export const getTokenKey = (
   key: schemas.TOKEN_SCHEMA_TYPE,

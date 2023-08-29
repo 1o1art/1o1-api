@@ -4,7 +4,8 @@
     "target": "es5",
     "module": "commonjs",
     "lib": [
-      "es6"
+      "es6",
+      "dom"
     ],
     "outDir": "build",
     "strict": true,
@@ -22,6 +23,7 @@
   },
   "include": [
     "src",
+    "examples"
   ],
   "exclude": [
     "node_modules",
